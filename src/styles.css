@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  font-family: "Arial", "sans-serif";
+  margin: 0px;
+  padding: 0px;
+}
+nav{
+  top: 0;
+  width: 100%;
+  height: 48px;
+  box-shadow: 4px 0px 4px black;
+}
+.navigation-body{
+  margin-left: 25%;
+}
+.navigation-links{
+  list-style: none;
+}
+
+.navigation-links li a,
+.login-button{
+  float: left;
+  color: black;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-decoration: none;
+}
+
+.navigation-links li a:hover,
+.login-button:hover {
+  color: darkorange;
+  cursor: pointer;
+}
+
+.login-button{
+  right: 25%;
+  position: absolute;
+}
+
+main{
+  margin-top: 16px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+main h1{
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid darkorange;
+}
+
+p{
+  margin-top: 8px;
+}
+
+h3{
+  margin-top: 8px;
+}
