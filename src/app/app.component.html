@@ -3,7 +3,7 @@
     <ul class="navigation-links">
       <li><a href="/">Home</a></li>
     </ul>
-    <a class="login-button" href="/login">Login</a>
+    <a *ngIf="isLoggedIn === false" class="login-button" (click)="login()">Login</a>
   </div>
 </nav>
 
