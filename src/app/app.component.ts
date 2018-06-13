@@ -1,37 +1,45 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from './service/login.service';
+import {UserService} from './service/user.service';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-  isLoggedIn = false;
+  code = null;
+  localStorage = localStorage;
 
   constructor(
-    private loginService: LoginService
-  ) {}
+    private loginService: LoginService,
+    private activatedRoute: ActivatedRoute
+  ) {
+
+  }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.loginService.checkLocalStorageIfLoggedIn();
-    console.log(this.isLoggedIn);
-  }
-
-  login() {
-    this.loginService
-      .login()
-      .then((value) => {
-        localStorage.setItem("login", "true");
-        this.isLoggedIn = true;
-        console.log(value);
-      })
-      .catch((error) => {
-        console.log(error);
-        localStorage.setItem("login", "false");
-        this.isLoggedIn = false;
+    if (this.code == null) {
+      this.activatedRoute.queryParams.subscribe(params => {
+        this.code = params["code"];
+        if (this.code !== undefined) {
+          this.loginService.loginOAuth(this.code);
+        }
       });
+    }
   }
 
+  login(): void {
+    // this.userService.getUser()
+    //   .then(value => console.log(value));
+    if (this.code == null) {
+      this.loginService.getAuthenticationCode();
+    }
+  }
+
+  hasAccessToken(): boolean {
+    return localStorage.getItem('accessToken') !== undefined;
+  }
 }

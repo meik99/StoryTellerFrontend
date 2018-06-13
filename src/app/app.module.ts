@@ -7,18 +7,25 @@ import {RouterModule, Routes} from "@angular/router";
 import { MainComponent } from './main/main.component';
 import {LoginService} from './service/login.service';
 import {HttpClientModule} from '@angular/common/http';
+import { StoryComponent } from './story/story.component';
+import {UserService} from './service/user.service';
 
 const routes: Routes = [
   {
     path: "",
     component: MainComponent
+  },
+  {
+    path: "story",
+    component: StoryComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    StoryComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,8 @@ const routes: Routes = [
     )
   ],
   providers: [
-    LoginService
+    LoginService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

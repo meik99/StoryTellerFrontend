@@ -16,6 +16,9 @@ nav{
 .navigation-links{
   list-style: none;
 }
+.navigation-links li a{
+  margin-right: 10px;
+}
 
 .navigation-links li a,
 .login-button{
