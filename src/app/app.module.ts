@@ -9,6 +9,7 @@ import {LoginService} from './service/login.service';
 import {HttpClientModule} from '@angular/common/http';
 import { StoryComponent } from './story/story.component';
 import {UserService} from './service/user.service';
+import {FormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot(
       routes
     )

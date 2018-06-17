@@ -1,3 +1,25 @@
+<h1>Story</h1>
+
 <p>
-  story works!
+  <button class="button" (click)="toggleUploadForm()" *ngIf="isAdmin()">Neue Story hochladen</button>
 </p>
+<form *ngIf="uploadFormShown" #storyUploadForm="ngForm">
+  <h3>Story hochladen</h3>
+  <p>
+    <label>Titel</label>
+  </p>
+  <p>
+    <input class="input-box" type="text" placeholder="Titel" id="title" name="title" [(ngModel)]="model.title" required
+      [ngClass]="{'invalid':  isInvalid(), 'valid': isValid()}">
+  </p>
+  <p>
+    <label>Datei</label>
+  </p>
+  <p>
+    <input type="file" class="input-file" accept=".csv, text/csv" id="file" name="file" [(ngModel)]="model.file">
+  </p>
+  <p>
+    <button class="button" (click)="uploadStory()">Hochladen</button>
+  </p>
+</form>
+<!--Load stories and view here-->

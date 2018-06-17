@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 const BASE_URL = "http://localhost:3000";
 
@@ -9,7 +10,8 @@ export class LoginService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   getAuthenticationCode(): any {
@@ -31,8 +33,25 @@ export class LoginService {
       .then((result) => {
           localStorage.setItem("accessToken", JSON.stringify(result));
 
-          location.href = "/story";
+          this.router.navigateByUrl("/story");
       })
       .catch(error => console.log(error));
+  }
+
+  isAdmin(): boolean{
+    let token = JSON.parse(localStorage.getItem("accessToken"));
+
+    if(token === undefined || token === null){
+      return false;
+    }
+    else{
+      this.http.post(BASE_URL + "/user/isAdmin", {token: token})
+        .toPromise()
+        .then((result) => result)
+        .catch((error) => {
+          console.log(error);
+          return false;
+        })
+    }
   }
 }
