@@ -10,6 +10,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { StoryComponent } from './story/story.component';
 import {UserService} from './service/user.service';
 import {FormsModule} from '@angular/forms';
+import {StoryService} from './service/story.service';
 
 const routes: Routes = [
   {
@@ -38,7 +39,8 @@ const routes: Routes = [
   ],
   providers: [
     LoginService,
-    UserService
+    UserService,
+    StoryService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  restBaseUrl: "http://localhost:3000",
+  storageKeyToken: "accessToken"
 };

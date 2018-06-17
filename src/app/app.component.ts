@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoginService} from './service/login.service';
 import {UserService} from './service/user.service';
 import {ActivatedRoute, Params} from '@angular/router';
+import {environment} from '../environments/environment.prod';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   hasAccessToken(): boolean {
-    return localStorage.getItem('accessToken') !== undefined;
+    return localStorage.getItem(environment.storageKeyToken) !== undefined &&
+      localStorage.getItem(environment.storageKeyToken) !== null;
   }
 }

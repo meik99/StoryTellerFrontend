@@ -1,7 +1,7 @@
 <h1>Story</h1>
 
 <p>
-  <button class="button" (click)="toggleUploadForm()" *ngIf="isAdmin()">Neue Story hochladen</button>
+  <button class="button" (click)="toggleUploadForm()" *ngIf="isAdmin">Neue Story hochladen</button>
 </p>
 <form *ngIf="uploadFormShown" #storyUploadForm="ngForm">
   <h3>Story hochladen</h3>

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = environment.restBaseUrl;
 
 
 @Injectable()
@@ -31,27 +32,22 @@ export class LoginService {
       .get(encodeURI(BASE_URL + "/user/loginOAuth?code=" + code))
       .toPromise()
       .then((result) => {
-          localStorage.setItem("accessToken", JSON.stringify(result));
+          localStorage.setItem(environment.storageKeyToken, JSON.stringify(result));
 
           this.router.navigateByUrl("/story");
       })
       .catch(error => console.log(error));
   }
 
-  isAdmin(): boolean{
-    let token = JSON.parse(localStorage.getItem("accessToken"));
+  isAdmin(): Promise<any>{
+    let token = JSON.parse(localStorage.getItem(environment.storageKeyToken));
 
     if(token === undefined || token === null){
-      return false;
+      return new Promise<boolean>(() => false);
     }
     else{
-      this.http.post(BASE_URL + "/user/isAdmin", {token: token})
+      return this.http.post(BASE_URL + "/user/isAdmin", token)
         .toPromise()
-        .then((result) => result)
-        .catch((error) => {
-          console.log(error);
-          return false;
-        })
     }
   }
 }

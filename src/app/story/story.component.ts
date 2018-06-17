@@ -2,6 +2,8 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import {UserService} from '../service/user.service';
 import {UploadStory} from '../entity/UploadStory';
 import {LoginService} from '../service/login.service';
+import {StoryService} from '../service/story.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-story',
@@ -10,8 +12,15 @@ import {LoginService} from '../service/login.service';
 })
 export class StoryComponent implements OnInit {
 
-  private _uploadFormShown = true;
+  private _uploadFormShown = false;
   private _model = new UploadStory();
+  private _isAdmin = false;
+
+  constructor(
+    private loginService: LoginService,
+    private storyService: StoryService,
+    private router: Router
+  ) { }
 
 
   get model(): UploadStory {
@@ -30,24 +39,30 @@ export class StoryComponent implements OnInit {
     return this._uploadFormShown;
   }
 
-  constructor(
-    private loginService: LoginService
-  ) { }
-
-  ngOnInit() {
+  get isAdmin(): boolean {
+    return this._isAdmin;
   }
 
-  isAdmin(): boolean{
-    return this.loginService.isAdmin();
+  set isAdmin(value: boolean) {
+    this._isAdmin = value;
+  }
+
+  ngOnInit() {
+    this.loginService.isAdmin()
+      .then(result => {
+        this.isAdmin = result;
+        if(result == false){
+          this.router.navigateByUrl("/");
+        }
+      })
+      .catch(error => console.log(error));
   }
 
   toggleUploadForm() {
     this.uploadFormShown = !this.uploadFormShown;
   }
 
-  uploadStory() {
-    console.log(this.model);
-  }
+  uploadStory() {  }
 
   isInvalid() {
     return !this.isValid();

@@ -3,9 +3,9 @@
     <ul class="navigation-links">
       <li><a routerLink="/">Home</a></li>
       <!--<li *ngIf="hasAccessToken()"><a routerLink="/story">Story</a></li>-->
-      <li><a routerLink="/story">Story</a></li>
+      <li><a routerLink="/story" *ngIf="hasAccessToken()">Story</a></li>
     </ul>
-    <a class="login-button" (click)="login()" *ngIf="code == null && hasAccessToken() === false">Login</a>
+    <a class="login-button" (click)="login()" *ngIf="hasAccessToken() === false">Login</a>
 
   </div>
 </nav>
