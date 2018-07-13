@@ -1,0 +1,5 @@
+<ul class="preview-story-list">
+  <li *ngFor="let story of previewStories" class="preview-story-list-item" (click)="openStory(story.id)" )>
+    {{story.title}}
+  </li>
+</ul>

@@ -1,21 +1,21 @@
 export class UploadStory {
-  private _title: String;
-  private _file: File;
+  private _title: string;
+  private _formData: FormData;
 
-  get title(): String {
+  get title(): string {
     return this._title;
   }
 
-  set title(value: String) {
+  set title(value: string) {
     this._title = value;
   }
 
-  get file(): File {
-    return this._file;
+  get formData(): FormData {
+    return this._formData;
   }
 
-  set file(value: File) {
-    this._file = value;
+  set formData(value: FormData) {
+    this._formData = value;
   }
 
   constructor(){}

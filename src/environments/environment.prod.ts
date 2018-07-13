@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  restBaseUrl: "http://localhost:3000",
-  storageKeyToken: "accessToken"
+  restBaseUrl: "https://rynkbit.com:3000",
+  storageKeyToken: "accessToken",
+  redirectUri: "https://rynkbit.com/storyteller"
 };

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 const BASE_URL = "http://localhost:3000";
 
@@ -7,12 +8,17 @@ const BASE_URL = "http://localhost:3000";
 export class UserService {
 
   constructor(
-    private http: HttpClient
+
   ) { }
 
-  getUser(): Promise<any> {
-    return this.http.get(BASE_URL + "/user/")
-      .toPromise();
-  }
+  getAuthenticationTokenFromStorage(){
+    let token = localStorage.getItem(environment.storageKeyToken);
 
+    if(token == undefined || token === null || token === ""){
+      localStorage.removeItem(environment.storageKeyToken);
+      return null;
+    }
+
+    return JSON.parse(localStorage.getItem(environment.storageKeyToken));
+  }
 }

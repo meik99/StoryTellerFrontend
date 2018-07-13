@@ -3,7 +3,7 @@
 <p>
   <button class="button" (click)="toggleUploadForm()" *ngIf="isAdmin">Neue Story hochladen</button>
 </p>
-<form *ngIf="uploadFormShown" #storyUploadForm="ngForm">
+<form *ngIf="uploadFormShown" #storyUploadForm="ngForm" #storyUploadForm>
   <h3>Story hochladen</h3>
   <p>
     <label>Titel</label>
@@ -16,10 +16,21 @@
     <label>Datei</label>
   </p>
   <p>
-    <input type="file" class="input-file" accept=".csv, text/csv" id="file" name="file" [(ngModel)]="model.file">
+    <input type="file" class="input-file" accept=".csv, text/csv" id="file" name="file" #fileInput>
   </p>
   <p>
     <button class="button" (click)="uploadStory()">Hochladen</button>
   </p>
+
+  <p *ngIf="uploadSuccess !== undefined && uploadSuccess == true" class="success-box">
+    Erfolgreich hochgeladen!
+  </p>
+  <p *ngIf="uploadSuccess !== undefined && uploadSuccess == false" class="success-box">
+    Wahrend des Uploads ist ein Fehler aufgetreten!
+  </p>
+
 </form>
+<p>
 <!--Load stories and view here-->
+  <app-preview-stories #previewStories></app-preview-stories>
+</p>

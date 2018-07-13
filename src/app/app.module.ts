@@ -11,6 +11,7 @@ import { StoryComponent } from './story/story.component';
 import {UserService} from './service/user.service';
 import {FormsModule} from '@angular/forms';
 import {StoryService} from './service/story.service';
+import { PreviewStoriesComponent } from './story/preview-stories/preview-stories.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MainComponent,
-    StoryComponent
+    StoryComponent,
+    PreviewStoriesComponent
   ],
   imports: [
     BrowserModule,
