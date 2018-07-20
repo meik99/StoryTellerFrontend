@@ -12,6 +12,7 @@ import {UserService} from './service/user.service';
 import {FormsModule} from '@angular/forms';
 import {StoryService} from './service/story.service';
 import { PreviewStoriesComponent } from './story/preview-stories/preview-stories.component';
+import { WatchStoryComponent } from './story/watch-story/watch-story.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: "story",
     component: StoryComponent
+  },
+  {
+    path: "read-story",
+    component: WatchStoryComponent
   }
 ];
 
@@ -29,7 +34,8 @@ const routes: Routes = [
     AppComponent,
     MainComponent,
     StoryComponent,
-    PreviewStoriesComponent
+    PreviewStoriesComponent,
+    WatchStoryComponent
   ],
   imports: [
     BrowserModule,
