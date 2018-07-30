@@ -1,3 +1,16 @@
-<p>
-  watch-story works!
-</p>
+<h1 *ngIf="story == null">Loading Story...</h1>
+
+<span *ngIf="story != null">
+  <h1>{{story.title}}</h1>
+  <h2>{{story.description}}</h2>
+  <div class="message-table">
+    <table>
+
+      <tr *ngFor="let messages of story.messages">
+        <td *ngFor="let message of messages">
+          {{message}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</span>

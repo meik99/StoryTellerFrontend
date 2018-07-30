@@ -34,4 +34,16 @@ export class StoryService {
     return this.http.get(environment.restBaseUrl + "/story/preview")
       .toPromise()
   }
+
+  getFullStory(storyId: string): Promise<any> {
+    let accessTokenValue = this.userService.getAuthenticationTokenFromStorage().token.access_token;
+
+    return this.http.post(
+      environment.restBaseUrl + "/story/full",
+      {
+        storyId: storyId,
+        accessTokenValue: accessTokenValue
+      }
+    ).toPromise();
+  }
 }

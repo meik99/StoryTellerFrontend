@@ -125,3 +125,20 @@ form,
 .preview-story-list-item:hover{
   background-color: #FAFAFA;
 }
+
+.message-table{
+  padding-top: 20px;
+}
+
+.message-table tr,
+.message-table td{
+  padding-top: 20px;
+  padding-right: 40px;
+}
+
+.message-table tr:nth-child(even){
+  background-color: lightblue;
+}
+.message-table tr:nth-child(odd){
+  background-color: lightgreen;
+}
